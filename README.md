@@ -30,7 +30,7 @@ Choose `portable` option to run the Raspberry Temperature Monitor without instal
 
 The `install` process will copy the script in */usr/local/sbin* folder, then create a new file */etc/profile.d/rpi-temp-monitor*. It required to use the *temp* alias to run the script easily. Restart session or run *. /root/.bashrc* command required to activate *temp* command.
 
-The `uninstall` process remove the script from */usr/local/sbin* folder, remove the file */etc/profile.d/rpi-temp-monitor*.
+The `uninstall` process remove the script from */usr/local/sbin* folder, remove the file */etc/profile.d/rpi-temp-monitor*.\
 **WARNING!** You cannot run this script again after this step from */usr/local/sbin* folder and with *temp* alias.
 
 The `update` process will update the installed script. You cannot update it before install!
