@@ -16,10 +16,10 @@ Do you know the command to check the actual temperature of your Raspberry? Me ne
 >*sudo ./rpi-temp-monitor.sh --install*
 
 If you run it without any argument, you have 5 options:
-1. Portable (any user)
-2. Install (root only)
-3. Uninstall (root only)
-4. Update (root only)
+1. Portable (any user) - *This menu will be renamed to "Run the monitor" after install*
+2. Install (root only) - *This menu will be disappear after install*
+3. Uninstall (root only) - *This menu is not available until the script is not installed*
+4. Update (root only) - *This menu is not available until the script is not installed*
 5. Quit
 
 Choose `portable` option to run the Raspberry Temperature Monitor without installation. Every user can run the script in portable mode, no root permission required.
