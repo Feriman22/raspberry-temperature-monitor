@@ -4,6 +4,8 @@
 
 Do you know the command to check the actual temperature of your Raspberry? Me neither. I created this script to solve this problem.
 
+![Screenshot](https://raw.githubusercontent.com/Feriman22/raspberry-temperature-monitor/master/raspberry-temperature-monitor-screenshot.png)
+
 ## Installation
 
 1. Download the script from GitHub:
