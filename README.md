@@ -33,7 +33,7 @@ The `update` process will update the installed script. You cannot update it befo
 
 Type *temp* in command line if the script has been installed. If not yet, you can run it as portable.
 
-Arugments:
+Available arugments:
 
 -p, --portable\
   Run the script in portable mode
@@ -49,12 +49,11 @@ Arugments:
 
 ## How to update
 
-Run the script and choose "Update" or run with --update argument.\
-The script will automatically update itself after reboot. If you want to disable it, modify the 5th line in the script.
+Run the script and choose "Update" or run with --update argument.
 
 ## The future
 
-- Add more easier way to disable auto update function
+- Release the script :) Soon...
 
 ## Changelog
 
