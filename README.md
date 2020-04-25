@@ -59,7 +59,7 @@ Run the script and choose "Update" or run with --update argument. This option is
 
 ## The future
 
-- Release the script :) Soon...
+- Coloring temperature values
 
 ## Changelog
 
