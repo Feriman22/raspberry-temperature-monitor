@@ -28,7 +28,7 @@ UPDATE()
 
 		# Compare the installed and the GitHub stored version
 		if [[ "$NEW" != "$(awk '/VERSION=/' "$SCRIPTLOCATION" | grep -o -P '(?<=").*(?=")')" ]] && [[ "$NEW" =~ '-' ]]; then
-			wget -q https://raw.githubusercontent.com/Feriman22/raspberry-temperature-monitor/rpi-temp-monitor.sh -O $SCRIPTLOCATION
+			wget -q https://raw.githubusercontent.com/Feriman22/raspberry-temperature-monitor/master/rpi-temp-monitor.sh -O $SCRIPTLOCATION
 			echo -e "Script has been ${GR}updated.${NC}"
 		else
 			echo -e "The script is ${GR}up to date.${NC}"
@@ -161,16 +161,15 @@ if [ "$OPT" == '-i' ] || [ "$OPTL" == '--install' ]; then
 	if [ ! -f "$PROFILELOCATION" ]; then
 		echo -e "$STRING\nalias sudo='sudo '" > "$PROFILELOCATION"
 		chmod +x "$PROFILELOCATION"
-		echo -e "Alias has been set for all users. ${GR}OK.${NC}"
+		echo -e "\nAlias has been set for all users. ${GR}OK.${NC}"
 	else
-		echo -e "Alias ${GR}already set for all users.${NC}"
+		echo -e "\nAlias ${GR}already set for all users.${NC}"
 	fi
 	
 	# Set alias in bashrc for root
 	STRING="alias temp="$SCRIPTLOCATION""
 	if [ $(grep -c "$STRING" /root/.bashrc) -lt "1" ]; then
 		echo "$STRING" >> /root/.bashrc
-		. /root/.bashrc
 		echo -e "Alias has been set for root. ${GR}OK.${NC}"
 	else
 		echo -e "Alias ${GR}already set for root.${NC}"
@@ -183,8 +182,8 @@ if [ "$OPT" == '-i' ] || [ "$OPTL" == '--install' ]; then
 		echo -e "The script already copied to destination or has been updated. Nothing to do. ${GR}OK.${NC}"
 	fi
 
-	# Activate the alias
-	source /etc/profile
+	# Print warning if the alias is active set yet
+	bash -ixlc : 2>&1 | grep temp > /dev/null && echo -e "\n${YL}WARNING!${NC} Restart session or run this below command is required to activate temp command:\n. /root/.bashrc\n"
 
 	# Happy ending.
 	echo -e "${GR}Done.${NC} Full install time was $(($SECONDS / 3600))hrs $((($SECONDS / 60) % 60))min $(($SECONDS % 60))sec"
@@ -235,14 +234,10 @@ if [ "$OPT" == '-u' ] || [ "$OPTL" == '--uninstall' ]; then
 	# Remove alias in .bashrc
 	if [ $(grep -c "$SCRIPTLOCATION" /root/.bashrc) -gt "0" ]; then
 		sed -i '/alias temp=/d' /root/.bashrc
-		. /root/.bashrc
-		echo -e "\nAlias removed for root. ${GR}OK.${NC}"
+		echo -e "Alias removed for root. ${GR}OK.${NC}"
 	else
-		echo -e "\nAlias not found for root. ${GR}OK.${NC}"
+		echo -e "Alias not found for root. ${GR}OK.${NC}"
 	fi
-
-	# Disable the alias
-	source /etc/profile
 	
 	# Remove the script
 	[ -f "$SCRIPTLOCATION" ] && rm -f "$SCRIPTLOCATION" && echo -e "The script removed. ${GR}OK.${NC}" || echo -e "Script not found. ${GR}OK.${NC}"
