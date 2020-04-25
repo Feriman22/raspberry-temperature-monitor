@@ -6,6 +6,8 @@ Do you know the command to check the actual temperature of your Raspberry? Me ne
 
 ![Screenshot](https://raw.githubusercontent.com/Feriman22/raspberry-temperature-monitor/master/raspberry-temperature-monitor-screenshot.png)
 
+Remark: You don't have to worry under 80 Celsius. If your Raspberry reach this value, it will protect itself by reduce CPU speed. By the way I'm using Armor Case without coolers, and the temperature never reached 60 Celsius beside 100% CPU load.
+
 ## Installation
 
 1. Download the script from GitHub:
@@ -14,6 +16,8 @@ Do you know the command to check the actual temperature of your Raspberry? Me ne
 >*chmod +x ./rpi-temp-monitor.sh*
 3. Install the script:
 >*sudo ./rpi-temp-monitor.sh --install*
+4. Run the script in the future with this simple command:
+>*temp*
 
 If you run it without any argument, you have 5 options:
 1. Portable (any user) - *This menu will be renamed to "Run the monitor" after install*
@@ -51,7 +55,7 @@ Available arugments:
 
 ## How to update
 
-Run the script and choose "Update" or run with --update argument.
+Run the script and choose "Update" or run with --update argument. This option is only available after install.
 
 ## The future
 
