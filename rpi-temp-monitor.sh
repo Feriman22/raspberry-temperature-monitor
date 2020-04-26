@@ -1,6 +1,6 @@
 #!/bin/bash
 SCRIPTNAME="Raspberry Temperature Monitor"
-VERSION="25-04-2020"
+VERSION="26-04-2020"
 SCRIPTLOCATION="/usr/local/sbin/rpi-temp-monitor.sh"
 PROFILELOCATION="/etc/profile.d/rpi-temp-monitor-alias.sh"
 
@@ -11,7 +11,7 @@ PROFILELOCATION="/etc/profile.d/rpi-temp-monitor-alias.sh"
 UPDATE()
 {
 	# Getting info about the latest GitHub version
-	NEW=$(curl -L --silent "https://github.com/Feriman22/raspberry-temperature-monitor/releases/latest" | awk '/<title>Release/ {print $4}')
+	NEW=$(curl -L --silent "https://github.com/Feriman22/raspberry-temperature-monitor/releases/latest" | grep css-truncate-target | grep span | cut -d ">" -f2 | cut -d "<" -f1 | tail -1)
 
 	# Compare the installed and the GitHub stored version - Only internal, not available by any argument
 	if [[ "$1" == "ONLYCHECK" ]] && [[ "$NEW" != "$VERSION" ]] && [[ "$NEW" =~ '-' ]]; then
@@ -121,6 +121,7 @@ if [ "$OPT" == '-p' ] || [ "$OPTL" == '--portable' ]; then
 		case $opt in
 			"$(echo $OPT1)")
 				watch -n 0.2 /opt/vc/bin/vcgencmd measure_temp
+				break
 				;;
 			"$(echo $OPT2)")
 				echo -e "Press Ctrl + C to exit.\n"
@@ -167,7 +168,6 @@ if [ "$OPT" == '-i' ] || [ "$OPTL" == '--install' ]; then
 	fi
 	
 	# Set alias in bashrc for root
-	STRING="alias temp="$SCRIPTLOCATION""
 	if [ $(grep -c "$STRING" /root/.bashrc) -lt "1" ]; then
 		echo "$STRING" >> /root/.bashrc
 		echo -e "Alias has been set for root. ${GR}OK.${NC}"
@@ -183,7 +183,7 @@ if [ "$OPT" == '-i' ] || [ "$OPTL" == '--install' ]; then
 	fi
 
 	# Print warning if the alias is active set yet
-	bash -ixlc : 2>&1 | grep temp > /dev/null && echo -e "\n${YL}WARNING!${NC} Restart session or run this below command is required to activate temp command:\n. /root/.bashrc\n"
+	bash -ixlc : 2>&1 | grep temp > /dev/null && echo -e "\n${YL}WARNING!${NC} Restart the session or run this below command is required to activate temp command:\nsource /root/.bashrc\n"
 
 	# Happy ending.
 	echo -e "${GR}Done.${NC} Full install time was $(($SECONDS / 3600))hrs $((($SECONDS / 60) % 60))min $(($SECONDS % 60))sec"
