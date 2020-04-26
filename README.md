@@ -19,7 +19,7 @@ Remark: You don't need to worry under 80 Celsius. If your Raspberry reaches this
 4. Run the script in the future with this simple command:
 >*temp*
 
-\If you run it without any argument, you have 5 options:
+If you run it without any argument, you have 5 options:
 1. Portable (any user) - *This menu will be renamed to "Run the monitor" after install*
 2. Install (root only) - *This menu will disappear after install*
 3. Uninstall (root only) - *This menu is not available until the script is not installed*
