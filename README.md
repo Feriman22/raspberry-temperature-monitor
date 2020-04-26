@@ -59,10 +59,13 @@ Run the script and choose "Update" or run with --update argument. This option is
 
 ## The future
 
-- Better update process
 - Coloring temperature values
 
 ## Changelog
+
+>26-04-2020
+- Live watch quit immediately after press Ctrl+C
+- More efficent update process
 
 >25-04-2020
 - Initial release
