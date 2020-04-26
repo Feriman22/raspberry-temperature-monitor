@@ -17,7 +17,7 @@ Remark: You don't need to worry under 80 Celsius. If your Raspberry reaches this
 3. Install the script:
 >*sudo ./rpi-temp-monitor.sh --install*
 4. Run the script in the future with this simple command:
->*temp*
+>*temp*\
 
 If you run it without any argument, you have 5 options:
 1. Portable (any user) - *This menu will be renamed to "Run the monitor" after install*
